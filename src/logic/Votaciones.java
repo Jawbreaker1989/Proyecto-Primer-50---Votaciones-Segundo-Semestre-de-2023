@@ -11,11 +11,15 @@ public class Votaciones {
     /**
      * Constructor de la clase Votaciones.
      *
-     * @param nombresCandidatos Array con los nombres de los candidatos.
-     * @param nombresMunicipios Array con los nombres de los municipios.
+     * @param nombresCandidatos   Array con los nombres de los candidatos.
+     * @param nombresMunicipios   Array con los nombres de los municipios.
+     * @throws IllegalArgumentException Si las matrices de candidatos o municipios tienen tamaño cero.
      */
-
     public Votaciones(String[] nombresCandidatos, String[] nombresMunicipios) {
+        if (nombresCandidatos.length == 0 || nombresMunicipios.length == 0) {
+            throw new IllegalArgumentException("Las matrices de candidatos y municipios no pueden tener tamaño cero.");
+        }
+
         candidatos = nombresCandidatos.clone();
         municipios = nombresMunicipios.clone();
         matrizVotos = new int[candidatos.length][municipios.length];
@@ -23,8 +27,7 @@ public class Votaciones {
     }
 
     /**
-     * Visualiza al candidato ganador junto con la cantidad total de votos
-     * obtenidos.
+     * Visualiza al candidato ganador junto con la cantidad total de votos obtenidos.
      */
     public void visualizarCandidatoGanador() {
         int totalVotosMax = 0;
@@ -80,10 +83,15 @@ public class Votaciones {
     /**
      * Consulta y muestra información específica sobre un candidato, como la mayor y
      * menor votación, y el promedio de votos.
-     * 
+     *
      * @param nombreCandidato El nombre del candidato a consultar.
+     * @throws IllegalArgumentException Si el nombre del candidato es nulo.
      */
     public void consultarCandidato(String nombreCandidato) {
+        if (nombreCandidato == null) {
+            throw new IllegalArgumentException("El nombre del candidato no puede ser nulo.");
+        }
+
         int indiceCandidato = -1;
 
         for (int i = 0; i < candidatos.length; i++) {
@@ -179,7 +187,7 @@ public class Votaciones {
 
     /**
      * Calcula la suma total de votos en un array de votos.
-     * 
+     *
      * @param votos Array de votos.
      * @return La suma total de votos.
      */
@@ -193,7 +201,7 @@ public class Votaciones {
 
     /**
      * Encuentra la mayor votación en un array de votos.
-     * 
+     *
      * @param votos Array de votos.
      * @return La mayor votación.
      */
@@ -209,7 +217,7 @@ public class Votaciones {
 
     /**
      * Encuentra la menor votación en un array de votos.
-     * 
+     *
      * @param votos Array de votos.
      * @return La menor votación.
      */
@@ -226,7 +234,7 @@ public class Votaciones {
     /**
      * Encuentra el índice del municipio que tiene una votación específica en un
      * array de votos.
-     * 
+     *
      * @param votos    Array de votos.
      * @param votacion La votación específica a buscar.
      * @return El índice del municipio o -1 si no se encuentra.
@@ -242,7 +250,7 @@ public class Votaciones {
 
     /**
      * Calcula el promedio de votaciones en un array de votos.
-     * 
+     *
      * @param votos Array de votos.
      * @return El promedio de votaciones.
      */
@@ -253,7 +261,7 @@ public class Votaciones {
 
     /**
      * Intercambia dos candidatos y sus respectivos votos en las matrices.
-     * 
+     *
      * @param indice1 Índice del primer candidato.
      * @param indice2 Índice del segundo candidato.
      */
